@@ -1,0 +1,56 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "courseName": "HND 51_Unit 20:APDP",
+      "title": "Higher National Diploma in Computing",
+      "lecture": "Daw A Mar Myo Thu",
+      "lecturePic": "profilePicture/FemaleLecturerPic.png",
+      "coursePic": "LectureImage/PADPImage.png",
+      "generalCourse": "Lectures/APDP/APDPintro.pdf",
+      "lecture1": "Lectures/APDP/APDPLecture1.pdf",
+      "lecture2": "Lectures/APDP/APDPLecture2.pdf",
+      "lecture3": "Lectures/APDP/APDPLecture3.pdf",
+      "grades": "S"
+    },
+    {
+      "id": 2,
+      "courseName": "HND 51_Unit 45:IoT",
+      "title": "Higher National Diploma in Computing",
+      "lecturer": "Daw Thi Thi Thandar",
+      "lecturePic": "profilePicture/FemaleLecturerPic.png",
+      "coursePic": "LectureImage/IOTImage.png",
+      "generalCourse": "Lectures/IOT/IOTintro.pdf",
+      "lecture1": "Lectures/IOT/IOTLecture1.pdf",
+      "lecture2": "Lectures/IOT/IOTLecture2.pdf",
+      "lecture3": "Lectures/IOT/IOTLecture3.pdf",
+      "grades": "S"
+    },
+    {
+      "id": 3,
+      "courseName": "HND 51_Unit 17:BPS",
+      "title": "Higher National Diploma in Computing",
+      "lecturer": "U Myo Myint Oo",
+      "lecturePic": "profilePicture/MaleLecturerPic.png",
+      "coursePic": "LectureImage/BPSImage.png",
+      "generalCourse": "Lectures/BPS/BPSintro.pdf",
+      "lecture1": "Lectures/BPS/BPSLecture1.pdf",
+      "lecture2": "Lectures/BPS/BPSLecture2.pdf",
+      "lecture3": "Lectures/BPS/BPSLecture3.pdf",
+      "grades": "S"
+    },
+    {
+      "id": 4,
+      "courseName": "HND 51_Unit 16:CRP",
+      "title": "Higher National Diploma in Computing",
+      "lecturer": "Daw Wyne Lei Lei",
+      "lecturePic": "profilePicture/FemaleLecturerPic.png",
+      "coursePic": "LectureImage/CRPImage.png",
+      "generalCourse": "Lectures/CRP/CRPintro.pdf",
+      "lecture1": "Lectures/CRP/CRPLecture.pdf",
+      "lecture2": "Lectures/CRP/CRPLecture2.pdf",
+      "lecture3": "Lectures/CRP/CRPLecture3.pdf",
+      "grades": "S"
+    }
+  ]
+}
