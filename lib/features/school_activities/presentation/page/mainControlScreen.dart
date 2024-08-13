@@ -49,7 +49,7 @@ class _MainControlScreenState extends State<MainControlScreen> {
             left: 20,
             child: ClipRRect(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                filter: ImageFilter.blur(sigmaX: 1, sigmaY: 2),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   width: MediaQuery.of(context).size.width * 1,

@@ -1,5 +1,5 @@
 name: assignment_hnd51_shinewaiyanaung
-description: "Acdemic App"
+description: "GUSGO"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -28,14 +28,21 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  percent_indicator: ^4.2.3
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "AppImages/UniversityIcon/GUSGO.png"
+  min_sdk_android: 21
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  percent_indicator: ^4.2.3
+  percent_indicator:
   flutter_bloc: ^8.0.0
   equatable: ^2.0.3
   intl: ^0.17.0
