@@ -1,3 +1,4 @@
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/CourseDetailsPage/course_detail.page.dart';
 import 'package:flutter/material.dart';
 
 import 'config/ theme/theme.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
          ),
         useMaterial3: true,
       ),
-      home:  MainControlScreen(),
+      home:  CourseDetail(),
     );
   }
 }
