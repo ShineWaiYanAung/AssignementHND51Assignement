@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import '../../widget/Componets/course_status.dart';
-import '../../widget/Componets/main_title.dart';
-import '../../widget/Componets/up_bar_widget.dart';
+import '../../widget/Components/course_status.dart';
+import '../../widget/Components/main_title.dart';
+import '../../widget/Components/up_bar_widget.dart';
+import '../CourseDetailsPage/course_detail.page.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});
@@ -13,7 +14,9 @@ class DashBoardScreen extends StatelessWidget {
       children: [
         ///UpperWidgets
         UpBarWidget(changesControl: true),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
 
         ///MainTitle
         const MainTitle(
@@ -25,7 +28,9 @@ class DashBoardScreen extends StatelessWidget {
         buildProgressBox(context),
 
         ///SecondaryTitle
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const MainTitle(title: "Your Courses", fontSize: 15),
 
         ///Courses
@@ -34,63 +39,72 @@ class DashBoardScreen extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           height: 10,
         ),
+
         ///Upcoming Event
         const MainTitle(title: "Up Coming Event", fontSize: 15),
         Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           height: 10,
         ),
+
         ///BuildComingEvent
         buildUpComingEvent(),
-
       ],
     );
   }
 
   Widget buildUpComingEvent() {
-    return Container(
-      color: Colors.transparent,
+    return SizedBox(
       height: 200,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              shape: RoundedRectangleBorder(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).focusColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-            tileColor: Theme.of(context).focusColor,
-            title: Text("Hi"),
-             subtitle: Text("data"),
-
-
-
-                    ),
-          );}
+              child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: const Text("Hi"),
+                subtitle: const Text("data"),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
   ///Courses
   Widget buildCourses(context) {
-    return Container(
-      color : Theme.of(context).scaffoldBackgroundColor,
-      height: 200,
-      child: GridView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: 5,
-        padding: EdgeInsets.zero,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-        ),
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).focusColor,
-              borderRadius: BorderRadius.circular(40),
+    return InkWell(
+      ///Need to Be implemented
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => CourseDetail(),
+      )),
+      child: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        height: 200,
+        child: GridView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: 5,
+          padding: EdgeInsets.zero,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+          ),
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).focusColor,
+                borderRadius: BorderRadius.circular(40),
+              ),
             ),
           ),
         ),

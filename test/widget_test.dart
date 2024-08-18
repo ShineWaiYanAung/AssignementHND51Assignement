@@ -1,30 +1,49 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/mainControlScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:assignment_hnd51_shinewaiyanaung/main.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/dash_board_screen.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/grades_status.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/profile_screen.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/school_intro.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('MainControlScreen shows correct pages when icons are tapped', (WidgetTester tester) async {
+    // Build the MainControlScreen widget
+    await tester.pumpWidget(
+      MaterialApp(
+        home: MainControlScreen(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the initial page is the DashBoardScreen
+    expect(find.byType(DashBoardScreen), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Find the Profile icon and tap it
+    await tester.tap(find.byIcon(Icons.person_outline));
+    await tester.pumpAndSettle(); // Wait for animations to complete
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the ProfileScreen is displayed
+    expect(find.byType(ProfileScreen), findsOneWidget);
+
+    // Find the Grades icon and tap it
+    await tester.tap(find.byIcon(Icons.grade_outlined));
+    await tester.pumpAndSettle();
+
+    // Verify that the GradesStatus screen is displayed
+    expect(find.byType(GradesStatus), findsOneWidget);
+
+    // Find the School Intro icon and tap it
+    await tester.tap(find.byIcon(Icons.import_contacts_outlined));
+    await tester.pumpAndSettle();
+
+    // Verify that the SchoolIntro screen is displayed
+    expect(find.byType(SchoolIntro), findsOneWidget);
+
+    // Return to the DashBoardScreen
+    await tester.tap(find.byIcon(Icons.home_outlined));
+    await tester.pumpAndSettle();
+
+    // Verify that the DashBoardScreen is displayed again
+    expect(find.byType(DashBoardScreen), findsOneWidget);
   });
 }

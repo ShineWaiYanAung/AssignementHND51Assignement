@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor:  primaryColor,
         focusColor: focusColor,
         scaffoldBackgroundColor: lightModeBackGroundColor,
+        cardColor: boxColor,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: primaryTextColor),   // Primary text color
           bodyMedium: TextStyle(color: labelMediumTextColor),
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
          ),
         useMaterial3: true,
       ),
-      home:  CourseDetail(),
+      home: MainControlScreen(),
     );
   }
 }
