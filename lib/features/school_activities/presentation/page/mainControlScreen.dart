@@ -26,7 +26,7 @@ class _MainControlScreenState extends State<MainControlScreen> {
   int selectedIndex = 0;
 
   List<Widget> pages = [
-    const DashBoardScreen(),
+    DashBoardScreen(),
     const ProfileScreen(),
     const GradesStatus(),
     const SchoolIntro(),
