@@ -25,10 +25,12 @@ class _UserAccountsDisplayState extends State<UserAccountsDisplay> {
   Widget build(BuildContext context) {
     final TextEditingController passwordController = TextEditingController();
     Future<void> _enter() async {
+
       final password = passwordController.text;
       UserAccountModel? userAccount; // Declare as nullable
       List<Lecture>? userCourses;
-      if ( password.isEmpty) {
+
+      if (password.isEmpty) {
         UserAccountModel.handleErrorState(
             context, "Please Fill the Necessary Requirement ", false);
         return;
@@ -37,27 +39,35 @@ class _UserAccountsDisplayState extends State<UserAccountsDisplay> {
       final box = Boxes.getAccountRegiersterion();
       bool found = false;
 
-      for (var transaction in box.values) {
-        for (var account in transaction.userAccount) {
+
+      for (var accountRegistration in box.values) {
+
+        for (var account in accountRegistration.userAccount) {
           if (account.password == password) {
+            // Assign the found user account and the associated courses
             userAccount = UserAccountModel(
-                userName: account.userName,
-                password: account.password,
-                email: account.email,
-                gender: account.gender,
-                age: account.age
+              userName: account.userName,
+              password: account.password,
+              email: account.email,
+              gender: account.gender,
+              age: account.age,
+
             );
-            userCourses = transaction.courses;
+
+
+            userCourses = accountRegistration.courses;
+
             setState(() {
               found = true;
             });
-            break;
+            break; // Exit the inner loop
           }
         }
-        if (found) break;
+        if (found) break; // Exit the outer loop if the user is found
       }
 
-      if (found && userAccount != null) {
+
+      if (found && userAccount != null && userCourses  != null ) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -65,13 +75,13 @@ class _UserAccountsDisplayState extends State<UserAccountsDisplay> {
               userAccount: userAccount!, courses: userCourses!,
             ),
           ),
-
         );
+
         UserAccountModel.handleErrorState(
             context, "WellCome Back ${userAccount.userName}",true);
       } else {
         UserAccountModel.handleErrorState(
-            context, "Password is Incorrect ", false);
+            context, "Your Email or Password is Incorrect ", false);
       }
     }
 
