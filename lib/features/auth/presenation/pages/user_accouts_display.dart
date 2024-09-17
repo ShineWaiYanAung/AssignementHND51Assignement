@@ -9,6 +9,7 @@ import 'package:intl/intl.dart'; // Make sure this import is present
 
 import '../../../school_activities/presentation/bloc/cours_bloc.dart';
 import '../../../school_activities/presentation/page/mainControlScreen.dart';
+import '../Domain/UserAccount/lecture.dart';
 import '../Domain/UserAccount/userAccountModel.dart';
 import '../HiveDataBase/boxes.dart';
 
@@ -25,17 +26,28 @@ class _UserAccountsDisplayState extends State<UserAccountsDisplay> {
     final TextEditingController passwordController = TextEditingController();
     Future<void> _enter() async {
       final password = passwordController.text;
-
+      UserAccountModel? userAccount; // Declare as nullable
+      List<Lecture>? userCourses;
       if ( password.isEmpty) {
         UserAccountModel.handleErrorState(
             context, "Please Fill the Necessary Requirement ", false);
         return;
       }
+
       final box = Boxes.getAccountRegiersterion();
       bool found = false;
+
       for (var transaction in box.values) {
         for (var account in transaction.userAccount) {
-          if  (account.password == password) {
+          if (account.password == password) {
+            userAccount = UserAccountModel(
+                userName: account.userName,
+                password: account.password,
+                email: account.email,
+                gender: account.gender,
+                age: account.age
+            );
+            userCourses = transaction.courses;
             setState(() {
               found = true;
             });
@@ -44,15 +56,22 @@ class _UserAccountsDisplayState extends State<UserAccountsDisplay> {
         }
         if (found) break;
       }
-      if (found) {
+
+      if (found && userAccount != null) {
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    MainControlScreen())); // Replace with your actual route
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainControlScreen(
+              userAccount: userAccount!, courses: userCourses!,
+            ),
+          ),
+
+        );
+        UserAccountModel.handleErrorState(
+            context, "WellCome Back ${userAccount.userName}",true);
       } else {
         UserAccountModel.handleErrorState(
-            context, "Your Name or Password is InCorrect ", false);
+            context, "Password is Incorrect ", false);
       }
     }
 

@@ -1,13 +1,22 @@
 import 'dart:ui';
 
+import 'package:assignment_hnd51_shinewaiyanaung/features/auth/presenation/Domain/UserAccount/userAccountModel.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/CourseDetailsPage/subCourseDetailPages/lecture_detail.dart';
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/dash_board_screen.dart';
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../auth/presenation/Domain/UserAccount/lecture.dart';
+import '../widget/Components/drawer_prifle.dart';
+
 class MainControlScreen extends StatefulWidget {
-  MainControlScreen({super.key});
+  final List<Lecture> courses;
+  final UserAccountModel userAccount;
+  const MainControlScreen({
+
+    super.key, required this.userAccount, required this.courses});
 
   @override
   State<MainControlScreen> createState() => _MainControlScreenState();
@@ -21,15 +30,20 @@ class _MainControlScreenState extends State<MainControlScreen> {
 
   int selectedIndex = 0;
 
-  List<Widget> pages = [
-    DashBoardScreen(),
-    const ProfileScreen(),
 
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+    List<Widget> pages = [
+      DashBoardScreen(scaffoldKey: _scaffoldKey, courses: widget.courses),
+      ProfileScreen(userAccount:  widget.userAccount, isShowUpBar: false,),
+
+    ];
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: CustomDrawer(accountModel: widget.userAccount,),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
           child: Stack(

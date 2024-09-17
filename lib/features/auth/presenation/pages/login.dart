@@ -4,6 +4,7 @@ import 'package:assignment_hnd51_shinewaiyanaung/features/auth/presenation/pages
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/mainControlScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../Domain/UserAccount/lecture.dart';
 import '../HiveDataBase/boxes.dart';
 import '../widget/componets/widget_textfield.dart';
 
@@ -21,6 +22,8 @@ class _LoginState extends State<Login> {
   Future<void> _login() async {
     final email = emailController.text;
     final password = passwordController.text;
+    UserAccountModel? userAccount; // Declare as nullable
+    List<Lecture>? userCourses;
 
     if (email.isEmpty || password.isEmpty) {
       UserAccountModel.handleErrorState(
@@ -31,27 +34,49 @@ class _LoginState extends State<Login> {
     final box = Boxes.getAccountRegiersterion();
     bool found = false;
 
-    for (var transaction in box.values) {
-      for (var account in transaction.userAccount) {
+
+    for (var accountRegistration in box.values) {
+
+      for (var account in accountRegistration.userAccount) {
         if (account.email == email && account.password == password) {
+          // Assign the found user account and the associated courses
+          userAccount = UserAccountModel(
+            userName: account.userName,
+            password: account.password,
+            email: account.email,
+            gender: account.gender,
+            age: account.age,
+
+          );
+
+
+           userCourses = accountRegistration.courses;
+
           setState(() {
             found = true;
           });
-          break;
+          break; // Exit the inner loop
         }
       }
-      if (found) break;
+      if (found) break; // Exit the outer loop if the user is found
     }
 
-    if (found) {
+
+    if (found && userAccount != null && userCourses  != null ) {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  MainControlScreen())); // Replace with your actual route
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainControlScreen(
+            userAccount: userAccount!, courses: userCourses!,
+           ),
+        ),
+      );
+
+      UserAccountModel.handleErrorState(
+          context, "WellCome Back ${userAccount.userName}",true);
     } else {
       UserAccountModel.handleErrorState(
-          context, "Your Name or Password is InCorrect ", false);
+          context, "Your Email or Password is Incorrect ", false);
     }
   }
 
@@ -166,7 +191,7 @@ class _LoginState extends State<Login> {
                             height: 20,
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               _login();
                             },
                             child: Container(

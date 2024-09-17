@@ -1,11 +1,16 @@
 import 'package:assignment_hnd51_shinewaiyanaung/features/auth/presenation/pages/login.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../auth/presenation/Domain/UserAccount/userAccountModel.dart';
 import '../../widget/Components/main_title.dart';
 import '../../widget/Components/up_bar_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+ final bool isShowUpBar;
+final  UserAccountModel userAccount;
+  const ProfileScreen({
+    required this.userAccount,
+    super.key, required this.isShowUpBar});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +19,7 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
+          isShowUpBar ?  UpBarWidget(changesControl: false): SizedBox(),
             ///FirstTitle
             CircleAvatar(
               radius: 80,
@@ -23,19 +29,20 @@ class ProfileScreen extends StatelessWidget {
           height: 50,
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 60,vertical: 60),
+          padding: EdgeInsets.symmetric(horizontal: 30,vertical: 60),
           decoration: BoxDecoration(
             color: Theme.of(context).focusColor,
             borderRadius: BorderRadius.circular(50)
           ),
           height: 300,
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               profielInfo("Name" , "ShineWaiYanAung"),
-              profielInfo("Age" , "16"),
-              profielInfo("Gender" , "Male"),
+               profielInfo("Name" , userAccount.userName),
+              profielInfo("Age" , userAccount.age.toString()),
+              profielInfo("Gender" , userAccount.gender),
+              profielInfo("Mail" , userAccount.email),
+              profielInfo("Password", userAccount.password),
               profielInfo("Batch" , "HND-51"),
 
             ],
@@ -92,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
                    child: Text(title,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "PrimaryFont"),),
                  ),
                  SizedBox(
-                   child: Text(data,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontFamily: "PrimaryFont"),),
+                   child: Text(data,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontFamily: "SecondaryFont"),),
                  ),
                ],
              );

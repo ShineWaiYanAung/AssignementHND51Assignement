@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
 class UpBarWidget extends StatefulWidget {
-  bool changesControl;
+  final bool changesControl;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
+
   UpBarWidget({
     required this.changesControl,
+    this.scaffoldKey,
     super.key,
   });
 
@@ -12,6 +14,11 @@ class UpBarWidget extends StatefulWidget {
 }
 
 class _UpBarWidgetState extends State<UpBarWidget> {
+  void _openDrawer() {
+    print("Clicked The Button");
+    Scaffold.of(context).openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,19 +26,18 @@ class _UpBarWidgetState extends State<UpBarWidget> {
       children: [
         widget.changesControl
             ? GestureDetector(
-                onTap: () {
-                  ///Drawer Function Need to be done
-                },
-                child: CircleAvatar(
-                  radius: 30,
-                  child: Image.asset("AppImages/PersonIcon/maleStudent.png"),
-                ),
-              )
+          onTap: _openDrawer,
+          child: CircleAvatar(
+            radius: 30,
+            child: Image.asset("AppImages/PersonIcon/maleStudent.png"),
+          ),
+        )
             : GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Image.asset("AppImages/BackIcon/backButton.png")),
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Image.asset("AppImages/BackIcon/backButton.png"),
+        ),
         Column(
           children: [
             Image.asset(

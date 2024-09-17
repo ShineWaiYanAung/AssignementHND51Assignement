@@ -62,6 +62,11 @@ flutter:
     - jsonDataApp/jsonData.json
     - AppImages/SignBackGround/SignBackGround.png
     - AppImages/lottie/zoomJSON.json
+    - AppImages/lottie/developer.json
+    - AppImages/SocialIcon/telegramIcon.png
+    - AppImages/SocialIcon/telegramQr.jpg
+    - AppImages/SocialIcon/viberIcon.png
+    - AppImages/SocialIcon/viberQr.png
 
   fonts:
     - family: PrimaryFont

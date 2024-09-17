@@ -1,7 +1,8 @@
-
 import 'package:assignment_hnd51_shinewaiyanaung/features/auth/presenation/pages/user_accouts_display.dart';
 import 'package:assignment_hnd51_shinewaiyanaung/features/auth/presenation/widget/componets/widget_small_textfield.dart';
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/bloc/cours_bloc.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/dash_board_screen.dart';
+import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/mainControlScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Domain/UserAccount/lecture.dart';
@@ -77,7 +78,8 @@ class _SignUpState extends State<SignUp> {
                 padding: const EdgeInsets.only(top: 30),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("AppImages/SignBackGround/SignBackGround.png"),
+                    image: AssetImage(
+                        "AppImages/SignBackGround/SignBackGround.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -86,7 +88,6 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Center(
                       child: Column(
-
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(height: 60),
@@ -96,7 +97,6 @@ class _SignUpState extends State<SignUp> {
                             controller: userNameController,
                           ),
                           const SizedBox(height: 30),
-
                           TextFieldBox(
                             width: width,
                             hintText: 'Email',
@@ -110,11 +110,11 @@ class _SignUpState extends State<SignUp> {
                           ),
                           const SizedBox(height: 20),
                           GestureDetector(
-                            onTap: ()=>showLectureDialog(context),
+                            onTap: () => showLectureDialog(context),
                             child: Container(
-
-                                width: 0.35 *width,
-                                padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 20),
+                                width: 0.35 * width,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 20),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).cardColor,
                                   boxShadow: const [
@@ -122,34 +122,42 @@ class _SignUpState extends State<SignUp> {
                                         color: Colors.black45,
                                         spreadRadius: 1,
                                         blurRadius: 2,
-                                        offset: Offset(1, 2)
-                                    )
+                                        offset: Offset(1, 2))
                                   ],
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child:  const Text("Lectures",style: TextStyle(
-                                    color: Color(0xFf2D3E6A),
-                                    fontFamily: 'SecondaryFont',
-                                    fontSize: 15
-                                ),)
-                            ),
+                                child: const Text(
+                                  "Lectures",
+                                  style: TextStyle(
+                                      color: Color(0xFf2D3E6A),
+                                      fontFamily: 'SecondaryFont',
+                                      fontSize: 15),
+                                )),
                           ),
                           const SizedBox(height: 20),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
-                              WidgetSmallTextfield(hintText: "Gender", controller: genderController, width: width, keyboardType: TextInputType.text,),
-                              SizedBox(width: 15,),
-                              WidgetSmallTextfield(hintText: "Age", controller: ageController, width: width,keyboardType: TextInputType.number)
+                              WidgetSmallTextfield(
+                                hintText: "Gender",
+                                controller: genderController,
+                                width: width,
+                                keyboardType: TextInputType.text,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              WidgetSmallTextfield(
+                                  hintText: "Age",
+                                  controller: ageController,
+                                  width: width,
+                                  keyboardType: TextInputType.number)
                             ],
                           ),
                           const SizedBox(height: 40),
-
-
                           Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(40),
                               color: const Color(0xFF2D3E6A),
@@ -162,7 +170,7 @@ class _SignUpState extends State<SignUp> {
                               ],
                             ),
                             child: TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 userAccountRegiestor();
                               },
                               child: const Text(
@@ -178,8 +186,8 @@ class _SignUpState extends State<SignUp> {
                           ),
                           TextButton(
                             onPressed: () {
-
-                              final route = MaterialPageRoute(builder: (context) =>Login());
+                              final route = MaterialPageRoute(
+                                  builder: (context) => Login());
                               Navigator.of(context).push(route);
                             },
                             child: const Text(
@@ -204,47 +212,75 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  void userAccountRegiestor (){
-    List <UserAccountModel> userAccounts =[];
-   final String userName = userNameController.text;
-   final String email   = emailController.text;
-   final String password = passwordController.text;
-   final String gender = genderController.text;
-   final int?  age =  int.tryParse(ageController.text);
+  void userAccountRegiestor() {
+    List<UserAccountModel> userAccounts = [];
+    final String userName = userNameController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
+    final String gender = genderController.text;
+    final int? age = int.tryParse(ageController.text);
 
-   if(userName.isNotEmpty && email.isNotEmpty && gender.isNotEmpty && password.isNotEmpty && age !=null && selectedLectures.isNotEmpty){
-     final userAccount = UserAccountModel(
-       userName :userName,
-       email : email,
-       password: password,
-       gender :gender,
-       age : age,
-     );
-     setState(() {
-       userAccounts = [userAccount];
-     });
-     final coureBloc = context.read<CourseBloc>();
+    // Debug prints
+    print("UserName: $userName");
+    print("Email: $email");
+    print("Gender: $gender");
+    print("Age: $age");
+    print("Selected Lectures: ${selectedLectures.map((l) => l.name).toList()}");
 
-     coureBloc.addAccountRegiseristion( userAccounts, selectedLectures);
-     UserAccountModel.handleErrorState(context, "Created Successfully Welcome ${userAccount.userName}",
-         true);
-     userNameController.clear();
-     emailController.clear();
-     passwordController.clear();
-     genderController.clear();
-     ageController.clear();
+    if (userName.isNotEmpty &&
+        email.isNotEmpty &&
+        gender.isNotEmpty &&
+        password.isNotEmpty &&
+        age != null &&
+        selectedLectures.isNotEmpty) {
+      final userAccount = UserAccountModel(
+        userName: userName,
+        email: email,
+        password: password,
+        gender: gender,
+        age: age,
+      );
 
-     setState(() {
-       selectedLectures.clear();
-     });
+      setState(() {
+        userAccounts = [userAccount];
+      });
 
-   }
-   else{
-     UserAccountModel.handleErrorState(context, "Pleas Fill in all field Correctly",
-         false);
-   }
+      final courseBloc = context.read<CourseBloc>();
 
+      // Check if CourseBloc is available
+      if (courseBloc == null) {
+        print("CourseBloc not found in context");
+        return;
+      }
+
+      courseBloc.addAccountRegiseristion(userAccounts, selectedLectures);
+
+      UserAccountModel.handleErrorState(context,
+          "Created Successfully Welcome ${userAccount.userName}", true);
+
+      userNameController.clear();
+      emailController.clear();
+      passwordController.clear();
+      genderController.clear();
+      ageController.clear();
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MainControlScreen(
+            userAccount: userAccount,
+            courses:selectedLectures
+          ),
+        ),
+      );
+
+
+    } else {
+      UserAccountModel.handleErrorState(
+          context, "Please Fill in all fields Correctly", false);
+    }
   }
+
+
   void showLectureDialog(BuildContext context) {
     final List<Lecture> allLectures = [
       Lecture(name: "HND 51_Unit 20:APDP"),
@@ -277,6 +313,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: allLectures.map((lecture) {
+                    print("Lecture: ${lecture.name}"); // Debug print
                     return CheckboxListTile(
                       value: tempSelectedLectures.contains(lecture),
                       onChanged: (bool? value) {
@@ -336,7 +373,5 @@ class _SignUpState extends State<SignUp> {
       },
     );
   }
-
-
 
 }

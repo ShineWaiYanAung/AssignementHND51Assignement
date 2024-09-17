@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 part 'lecture.g.dart';
 @HiveType(typeId: 2)
 class Lecture{
+
   @HiveField(6)
   final String name;
   Lecture({required this.name});
