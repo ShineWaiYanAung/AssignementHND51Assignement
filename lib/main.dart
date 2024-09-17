@@ -9,6 +9,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'features/auth/presenation/Domain/UserAccount/lecture.dart';
 import 'features/auth/presenation/Domain/UserAccount/userAccountModel.dart';
 import 'features/auth/presenation/HiveDataBase/account_regiersterion.dart';
+import 'features/auth/presenation/pages/login.dart';
 import 'features/school_activities/presentation/bloc/cours_bloc.dart';
 Future<void>main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
            ),
           useMaterial3: true,
         ),
-        home: MainControlScreen()
+        home: Login()
       ),
     );
   }

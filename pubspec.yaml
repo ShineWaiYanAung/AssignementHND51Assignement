@@ -22,6 +22,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.17.0
+  table_calendar: ^3.0.0
+  lottie: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +61,7 @@ flutter:
     - AppImages/BackIcon/backButton.png
     - jsonDataApp/jsonData.json
     - AppImages/SignBackGround/SignBackGround.png
+    - AppImages/lottie/zoomJSON.json
 
   fonts:
     - family: PrimaryFont

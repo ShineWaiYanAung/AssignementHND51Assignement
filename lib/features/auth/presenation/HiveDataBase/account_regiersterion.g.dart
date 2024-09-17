@@ -44,3 +44,4 @@ class AccountRegiersterionAdapter extends TypeAdapter<AccountRegiersterion> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+

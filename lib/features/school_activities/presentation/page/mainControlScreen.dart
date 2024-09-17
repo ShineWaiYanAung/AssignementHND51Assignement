@@ -1,9 +1,7 @@
 import 'dart:ui';
 
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/dash_board_screen.dart';
-import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/grades_status.dart';
 import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/profile_screen.dart';
-import 'package:assignment_hnd51_shinewaiyanaung/features/school_activities/presentation/page/SubScreenPages/school_intro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +17,6 @@ class _MainControlScreenState extends State<MainControlScreen> {
   List<IconData> navIcon = [
     Icons.home_outlined,
     Icons.person_outline,
-    Icons.grade_outlined,
-    Icons.import_contacts_outlined,
   ];
 
   int selectedIndex = 0;
@@ -28,8 +24,7 @@ class _MainControlScreenState extends State<MainControlScreen> {
   List<Widget> pages = [
     DashBoardScreen(),
     const ProfileScreen(),
-    const GradesStatus(),
-    const SchoolIntro(),
+
   ];
 
   @override
@@ -45,8 +40,8 @@ class _MainControlScreenState extends State<MainControlScreen> {
           ),
           Positioned(
             bottom: 60,
-            right: 20,
-            left: 20,
+            right: 60,
+            left: 60,
             child: ClipRRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 1, sigmaY: 2),
@@ -79,7 +74,7 @@ class _MainControlScreenState extends State<MainControlScreen> {
                                 color: isSelected
                                     ? Theme.of(context).focusColor
                                     : Colors.black.withOpacity(0.5),
-                              )),
+                              ),),
                         );
                       },
                     ).toList(),
