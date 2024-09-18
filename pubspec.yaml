@@ -34,6 +34,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - AppImages/Event/iotShow.png
     - profilePicture/FemaleLecturerPic.png
     - profilePicture/MaleLecturerPic.png
     - Lectures/APDP/APDPintro.pdf

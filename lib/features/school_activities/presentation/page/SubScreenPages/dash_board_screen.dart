@@ -10,6 +10,7 @@ import '../../widget/Components/course_status.dart';
 import '../../widget/Components/main_title.dart';
 import '../../widget/Components/up_bar_widget.dart';
 import '../CourseDetailsPage/course_detail.dart';
+import 'events.dart';
 
 class DashBoardScreen extends StatelessWidget {
   final List<Lecture> courses;
@@ -105,26 +106,34 @@ class DashBoardScreen extends StatelessWidget {
 
 
 
-
+  List<String> events = ['IOT Show',"Website Design Contents"];
   Widget buildUpcomingEvent() {
     return SizedBox(
       height: 200,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: events.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 18.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).focusColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
+
+        final  title = events[index];
+
+          return GestureDetector(
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Events(title: title,),));
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).focusColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                title: const Text("Hi"),
-                subtitle: const Text("data"),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  title:  Text(title.toString(),style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w500),),
+                  subtitle: const Text("HND51",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w500),),
+                ),
               ),
             ),
           );
